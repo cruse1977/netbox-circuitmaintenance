@@ -4,6 +4,7 @@ from utilities.forms.fields import DynamicModelChoiceField
 from utilities.forms.widgets import DateTimePicker
 from circuits.models import Provider, Circuit
 from .models import CircuitMaintenance, CircuitMaintenanceImpact, CircuitMaintenanceNotifications, CircuitMaintenanceTypeChoices, CircuitMaintenanceImpactTypeChoices
+from utilities.forms.rendering import FieldSet
 
 class CircuitMaintenanceForm(NetBoxModelForm):
 

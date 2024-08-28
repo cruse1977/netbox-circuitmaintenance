@@ -18,6 +18,9 @@ class NestedCircuitMaintenanceImpactSerializer(WritableNestedSerializer):
         fields = (
             'id', 'url', 'circuit', 'impact', 'created', 'last_updated',
         )
+        brief_fields = (
+            'id', 'url', 'circuit', 'impact'
+        )
 
 class NestedCircuitMaintenanceSerializer(WritableNestedSerializer):
     url = serializers.HyperlinkedIdentityField(

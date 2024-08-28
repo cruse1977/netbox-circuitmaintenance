@@ -1,5 +1,4 @@
-from extras.plugins import PluginMenuItem, PluginMenu, PluginMenuButton
-from utilities.choices import ButtonColorChoices
+from netbox.plugins import PluginMenuItem, PluginMenu, PluginMenuButton
 
 menuitems = [
     PluginMenuItem(
@@ -10,7 +9,6 @@ menuitems = [
                 link='plugins:netbox_circuitmaintenance:circuitmaintenance_add',
                 title='Add',
                 icon_class='mdi mdi-plus-thick',
-                color=ButtonColorChoices.GREEN
             )
         ]
     ),

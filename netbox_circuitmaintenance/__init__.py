@@ -2,10 +2,10 @@
 
 __author__ = """Jason Yates"""
 __email__ = 'me@jasonyates.co.uk'
-__version__ = '0.3.0'
+__version__ = '0.4.0'
 
 
-from extras.plugins import PluginConfig
+from netbox.plugins import PluginConfig
 
 
 class CircuitMaintenanceConfig(PluginConfig):
