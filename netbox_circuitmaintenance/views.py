@@ -10,8 +10,10 @@ import calendar
 from django.utils.safestring import mark_safe
 from django.db.models import Q
 from django.conf import settings
+from utilities.views import register_model_view
 
 # Circuit Maintenance Views
+@register_model_view(models.CircuitMaintenance)
 class CircuitMaintenanceView(generic.ObjectView):
     queryset = models.CircuitMaintenance.objects.prefetch_related('impact').all()
 
@@ -26,7 +28,7 @@ class CircuitMaintenanceView(generic.ObjectView):
             "impacts": impact,
             "notifications": notification
         }
-
+@register_model_view(models.CircuitMaintenance, "list", path="", detail=False)
 class CircuitMaintenanceListView(generic.ObjectListView):
     queryset = models.CircuitMaintenance.objects.annotate(
         impact_count=Count('impact')
@@ -35,31 +37,42 @@ class CircuitMaintenanceListView(generic.ObjectListView):
     filterset = filtersets.CircuitMaintenanceFilterSet
     filterset_form = forms.CircuitMaintenanceFilterForm
 
+@register_model_view(models.CircuitMaintenance, "add", detail=False)
+@register_model_view(models.CircuitMaintenance, "edit")
 class CircuitMaintenanceEditView(generic.ObjectEditView):
     queryset = models.CircuitMaintenance.objects.all()
     form = forms.CircuitMaintenanceForm
 
+@register_model_view(models.CircuitMaintenance,"delete")
 class CircuitMaintenanceDeleteView(generic.ObjectDeleteView):
     queryset = models.CircuitMaintenance.objects.all()
 
 
 # Circuit Maintenance Impact views
+@register_model_view(models.CircuitMaintenanceImpact, "add", detail=False)
+@register_model_view(models.CircuitMaintenanceImpact, "edit")
 class CircuitMaintenanceImpactEditView(generic.ObjectEditView):
     queryset = models.CircuitMaintenanceImpact.objects.all()
     form = forms.CircuitMaintenanceImpactForm
 
+
+@register_model_view(models.CircuitMaintenanceImpact, "delete")
 class CircuitMaintenanceImpactDeleteView(generic.ObjectDeleteView):
     queryset = models.CircuitMaintenanceImpact.objects.all()
 
 
 # Circuit Maintenance Notification views
+@register_model_view(models.CircuitMaintenanceNotifications, "add", detail=False)
+@register_model_view(models.CircuitMaintenanceNotifications, "edit")
 class CircuitMaintenanceNotificationsEditView(generic.ObjectEditView):
     queryset = models.CircuitMaintenanceNotifications.objects.all()
     form = forms.CircuitMaintenanceNotificationsForm
 
+@register_model_view(models.CircuitMaintenanceNotifications, "delete")
 class CircuitMaintenanceNotificationsDeleteView(generic.ObjectDeleteView):
     queryset = models.CircuitMaintenanceNotifications.objects.all()
 
+@register_model_view(models.CircuitMaintenanceNotifications)
 class CircuitMaintenanceNotificationView(generic.ObjectView):
     queryset = models.CircuitMaintenanceNotifications.objects.all()
 
